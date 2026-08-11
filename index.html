@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angel Moreno Dominguez — Aerospace Engineering</title>
+<meta name="description" content="Angel Moreno — Aerospace Engineering student at UTEP. Projects, coursework, and resume.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0e16;
+    --panel: #111826;
+    --panel-border: #1e2a3f;
+    --grid: #16202f;
+    --text: #e8edf4;
+    --text-dim: #8a9bb0;
+    --blue: #4a9eff;
+    --amber: #ffa640;
+    --radius: 3px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:48px 48px;
+    background-attachment:fixed;
+  }
+
+  a{ color:inherit; }
+
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    background:rgba(10,14,22,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--panel-border);
+  }
+  nav{
+    max-width:1040px;
+    margin:0 auto;
+    padding:16px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .nav-mark{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:0.02em;
+  }
+  .nav-mark span{ color:var(--blue); }
+  .nav-links{
+    display:flex;
+    gap:28px;
+    list-style:none;
+  }
+  .nav-links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--text-dim);
+    transition:color 0.2s;
+    padding:4px 0;
+    border-bottom:1px solid transparent;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{
+    color:var(--text);
+    border-bottom-color:var(--blue);
+  }
+  .nav-links a:focus-visible{ outline:2px solid var(--blue); outline-offset:4px; }
+
+  @media (max-width:640px){
+    .nav-links{ gap:16px; }
+    .nav-links a{ font-size:10px; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    padding-top:100px;
+    padding-bottom:60px;
+  }
+
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .hero-eyebrow::before{
+    content:'';
+    width:8px; height:8px;
+    background:var(--amber);
+    border-radius:50%;
+    box-shadow:0 0 8px var(--amber);
+  }
+
+  h1.name{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(42px, 8vw, 84px);
+    line-height:1.02;
+    letter-spacing:-0.02em;
+    max-width:900px;
+  }
+
+  .role-line{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(18px, 3vw, 26px);
+    color:var(--text-dim);
+    margin-top:18px;
+    font-weight:500;
+  }
+  .role-line .blue{ color:var(--blue); }
+
+  .hero-desc{
+    max-width:560px;
+    margin-top:24px;
+    color:var(--text-dim);
+    font-size:16px;
+  }
+
+  .hero-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:32px;
+    margin-top:44px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+  }
+  .hero-meta div{ color:var(--text-dim); }
+  .hero-meta strong{
+    display:block;
+    color:var(--text);
+    font-size:13px;
+    margin-top:4px;
+  }
+
+  .hero-cta{
+    display:flex;
+    gap:14px;
+    margin-top:44px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:13px 22px;
+    border-radius:var(--radius);
+    transition:transform 0.15s, background 0.15s, border-color 0.15s;
+    display:inline-block;
+  }
+  .btn:focus-visible{ outline:2px solid var(--blue); outline-offset:3px; }
+  .btn-primary{
+    background:var(--blue);
+    color:#0a0e16;
+    font-weight:600;
+    border:1px solid var(--blue);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--text);
+    border:1px solid var(--panel-border);
+  }
+  .btn-ghost:hover{ border-color:var(--blue); transform:translateY(-2px); }
+
+  /* trajectory svg */
+  .trajectory-wrap{
+    position:absolute;
+    right:-5%;
+    top:50%;
+    transform:translateY(-50%);
+    width:52%;
+    max-width:560px;
+    opacity:0.9;
+    pointer-events:none;
+  }
+  @media (max-width:900px){ .trajectory-wrap{ display:none; } }
+
+  .trajectory-path{
+    fill:none;
+    stroke:var(--blue);
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-dasharray:900;
+    stroke-dashoffset:900;
+    animation:draw 2.6s ease-out 0.4s forwards;
+  }
+  .trajectory-dot{
+    fill:var(--amber);
+    opacity:0;
+    animation:appear 0.4s ease-out 2.8s forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @keyframes appear{ to{ opacity:1; } }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:90px 0; border-top:1px solid var(--panel-border); }
+
+  .section-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--blue);
+    margin-bottom:14px;
+  }
+  .section-label::before{ content:'// '; color:var(--text-dim); }
+
+  h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:clamp(28px, 4vw, 40px);
+    margin-bottom:36px;
+    max-width:640px;
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* about */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:56px;
+  }
+  @media (max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
+
+  .about-text p{ color:var(--text-dim); margin-bottom:16px; max-width:56ch; }
+  .about-text strong{ color:var(--text); font-weight:600; }
+
+  .coursework{
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:var(--radius);
+    padding:24px;
+  }
+  .coursework .section-label{ margin-bottom:16px; }
+  .coursework ul{ list-style:none; }
+  .coursework li{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--text-dim);
+    padding:8px 0;
+    border-bottom:1px solid var(--panel-border);
+    display:flex;
+    justify-content:space-between;
+  }
+  .coursework li:last-child{ border-bottom:none; }
+  .coursework li span:last-child{ color:var(--text); }
+
+  /* projects */
+  .project-card{
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:var(--radius);
+    overflow:hidden;
+    margin-bottom:24px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+  @media (max-width:760px){ .project-card{ grid-template-columns:1fr; } }
+
+  .project-card.placeholder{
+    grid-template-columns:1fr;
+    border-style:dashed;
+  }
+
+  .project-media{
+    background:#0d1420;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    border-right:1px solid var(--panel-border);
+  }
+  @media (max-width:760px){ .project-media{ border-right:none; border-bottom:1px solid var(--panel-border); } }
+  .project-media img{ width:100%; border-radius:2px; display:block; }
+
+  .project-body{ padding:28px; display:flex; flex-direction:column; }
+  .project-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:10px;
+  }
+  .project-body h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:20px;
+    margin-bottom:10px;
+  }
+  .project-body p{ color:var(--text-dim); font-size:14px; margin-bottom:18px; flex-grow:1; }
+  .project-stats{
+    display:flex;
+    gap:20px;
+    margin-bottom:18px;
+    flex-wrap:wrap;
+  }
+  .project-stats div{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); }
+  .project-stats strong{ display:block; color:var(--blue); font-size:15px; }
+  .project-links{ display:flex; gap:12px; }
+  .project-links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    text-decoration:none;
+    color:var(--text);
+    border-bottom:1px solid var(--blue);
+    padding-bottom:2px;
+  }
+  .project-links a:hover{ color:var(--blue); }
+
+  .placeholder .project-body{ align-items:flex-start; }
+  .placeholder p{ color:var(--text-dim); }
+  .placeholder-badge{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--text-dim);
+    border:1px dashed var(--panel-border);
+    padding:4px 10px;
+    border-radius:20px;
+    margin-bottom:14px;
+    display:inline-block;
+  }
+
+  /* skills */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:1px;
+    background:var(--panel-border);
+    border:1px solid var(--panel-border);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .skill-panel{
+    background:var(--panel);
+    padding:24px;
+  }
+  .skill-panel .section-label{ font-size:11px; margin-bottom:14px; }
+  .skill-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .skill-tags span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--text);
+    background:#0d1420;
+    border:1px solid var(--panel-border);
+    padding:6px 12px;
+    border-radius:20px;
+  }
+
+  /* resume */
+  .resume-panel{
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:var(--radius);
+    padding:40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:24px;
+  }
+  .resume-panel h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:22px;
+    margin-bottom:8px;
+  }
+  .resume-panel p{ color:var(--text-dim); font-size:14px; max-width:40ch; }
+
+  /* contact / footer */
+  footer{
+    border-top:1px solid var(--panel-border);
+    padding:70px 0 40px;
+  }
+  .contact-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:30px;
+    margin-bottom:50px;
+  }
+  .contact-links{
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+    margin-top:20px;
+  }
+  .contact-links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    text-decoration:none;
+    color:var(--text);
+    border-bottom:1px solid var(--blue);
+    padding-bottom:3px;
+  }
+  .contact-links a:hover{ color:var(--blue); }
+  .footer-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--text-dim);
+    letter-spacing:0.04em;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="nav-mark">ANGEL<span>·</span>MORENO</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#resume">Résumé</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero wrap" style="border-top:none;">
+  <div class="hero-eyebrow mono">Open to internships</div>
+  <h1 class="name">Angel Moreno Dominguez</h1>
+  <div class="role-line">Aerospace Engineering student <span class="blue">·</span> UTEP</div>
+  <p class="hero-desc">
+    Studying aerospace &amp; aeronautical engineering with a minor in computer science.
+    I build small tools in Python to explore physics:
+    trajectories, structures, and flight mechanics.
+  </p>
+
+  <div class="hero-meta">
+    <div>LOCATION<strong>El Paso, TX</strong></div>
+    <div>DEGREE<strong>B.S. Aerospace &amp; Aeronautical Eng.</strong></div>
+    <div>GRAD<strong>Spring 2028</strong></div>
+    <div>LANGUAGES<strong>English / Spanish</strong></div>
+  </div>
+
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="#projects">View Projects</a>
+    <a class="btn btn-ghost" href="#resume">Download Résumé</a>
+  </div>
+
+  <div class="trajectory-wrap">
+    <svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg">
+      <path class="trajectory-path" d="M20,220 C160,20 440,20 580,220" />
+      <circle class="trajectory-dot" cx="300" cy="63" r="5" />
+    </svg>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="wrap reveal">
+  <div class="section-label">About</div>
+  <h2>Currently learning how things fly — and how to build the tools that model them.</h2>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm an aerospace engineering student at <strong>The University of Texas at El Paso</strong>,
+        minoring in computer science. My coursework is grounded in the fundamentals —
+        statics, calculus, physics — and I like translating that math into working code.
+      </p>
+      <p>
+        Outside the classroom I've spent several years in fast-paced customer-facing roles
+        (retail, food service, campus library), which taught me how to stay organized,
+        lead a shift under pressure, and communicate clearly with people from a lot of
+        different backgrounds. I'm bilingual in English and Spanish.
+      </p>
+      <p>
+        I'm currently looking for an internship or research opportunity where I can apply
+        what I'm learning to real engineering problems.
+      </p>
+    </div>
+
+    <div class="coursework">
+      <div class="section-label">Relevant coursework</div>
+      <ul class="mono">
+        <li><span>Calculus</span><span>I – III</span></li>
+        <li><span>Physics</span><span>I &amp; II</span></li>
+        <li><span>Statics</span><span>UTEP</span></li>
+        <li><span>Graphic &amp; Design Fundamentals</span><span>UTEP</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects" class="wrap reveal">
+  <div class="section-label">Projects</div>
+  <h2>Python Tools For Physics.</h2>
+
+  <div class="project-card">
+    <div class="project-media">
+      <img src="trajectory_plots.png" alt="Altitude, speed, acceleration, and flight-path plots from the rocket trajectory simulator">
+    </div>
+    <div class="project-body">
+      <div class="project-tag">Python · Physics Simulation</div>
+      <h3>Rocket Trajectory Simulator</h3>
+      <p>
+        A 2D rocket flight simulator modeling thrust, propellant mass depletion, gravity,
+        and altitude-dependent atmospheric drag, integrated with 4th-order Runge-Kutta (RK4).
+        Outputs apogee, max velocity, max acceleration, and full flight-path plots from
+        command-line parameters.
+      </p>
+      <div class="project-stats">
+        <div>APOGEE<strong>3,265 m</strong></div>
+        <div>MAX VELOCITY<strong>461 m/s</strong></div>
+        <div>MAX ACCEL<strong>15.0 g</strong></div>
+      </div>
+      <div class="project-links">
+        <!-- TODO: replace with your real GitHub repo link -->
+        <a href="https://github.com/llcangelmd0614-jpg/rocket-trajectory-simulator" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-media">
+      <img src="launcher_preview.png" alt="Flight path and telemetry charts from the launcher trajectory simulator">
+    </div>
+    <div class="project-body">
+      <div class="project-tag">Python · JS · Physics Simulation</div>
+      <h3>Launcher Trajectory Simulator</h3>
+      <p>
+        An interactive 2D projectile launcher that integrates the equations of motion
+        under gravity and optional quadratic air drag with 4th-order Runge-Kutta (RK4).
+        Adjust mass, launch angle, and muzzle velocity and watch the flight path,
+        altitude, and speed update live.
+      </p>
+      <div class="project-stats">
+        <div>INTEGRATOR<strong>RK4</strong></div>
+        <div>MODEL<strong>Gravity + drag</strong></div>
+        <div>OUTPUT<strong>Live plots</strong></div>
+      </div>
+      <div class="project-links">
+        <a href="launcher-simulator.html">Try it live →</a>
+        <!-- TODO: replace with your real GitHub repo link -->
+        <a href="https://github.com/llcangelmd0614-jpg/launcher-trajectory-simulator" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TODO: duplicate this block for each university research project and fill in real details -->
+  <div class="project-card placeholder">
+    <div class="project-body">
+      <span class="placeholder-badge">+ Add project</span>
+      <h3 style="color:var(--text-dim);">University research project</h3>
+      <p>
+        Comming Soon...
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills" class="wrap reveal">
+  <div class="section-label">Skills</div>
+  <h2>What I work with.</h2>
+
+  <div class="skills-grid">
+    <div class="skill-panel">
+      <div class="section-label">Programming</div>
+      <div class="skill-tags">
+        <span>Python</span>
+        <span>HTML</span>
+        <span>CSS</span>
+      </div>
+    </div>
+    <div class="skill-panel">
+      <div class="section-label">Technical</div>
+      <div class="skill-tags">
+        <span>Applied Mathematics</span>
+        <span>PC Hardware</span>
+        <span>Windows / macOS</span>
+      </div>
+    </div>
+    <div class="skill-panel">
+      <div class="section-label">Languages</div>
+      <div class="skill-tags">
+        <span>English (fluent)</span>
+        <span>Spanish (fluent)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESUME ============ -->
+<section id="resume" class="wrap reveal">
+  <div class="section-label">Résumé</div>
+  <h2>Full background, coursework, and experience.</h2>
+
+  <div class="resume-panel">
+    <div>
+      <h3>Angel Moreno — Résumé</h3>
+      <p>PDF / DOCX, updated regularly as coursework and projects progress.</p>
+    </div>
+    <!-- TODO: upload your résumé file next to this page and update the href -->
+    <a class="btn btn-primary" href="Angel_Moreno_Resume.docx" download>Download Résumé</a>
+  </div>
+</section>
+
+<!-- ============ CONTACT / FOOTER ============ -->
+<footer id="contact" class="wrap">
+  <div class="contact-row">
+    <div>
+      <div class="section-label">Contact</div>
+      <h2 style="margin-bottom:0;">Let's talk.</h2>
+      <div class="contact-links">
+        <a href="mailto:angelmorenod0614@gmail.com">aamorenodoming@miners.utep.edu</a>
+        <!-- TODO: add your LinkedIn and GitHub profile links -->
+        <a href="#" target="_blank" rel="noopener">LinkedIn →</a>
+        <a href="https://github.com/llcangelmd0614-jpg" target="_blank" rel="noopener">GitHub →</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-note">EL PASO, TX &nbsp;·&nbsp; +1 915 701 6391</div>
+</footer>
+
+<script>
+  // reveal-on-scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
